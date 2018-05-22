@@ -67,7 +67,10 @@ if ($name.Name -like "*wireshark*"){
     $tshark_path
     & "$tshark_path" -a duration:10 -w automatic_capture.pcapng
     Stop-Process -Name $wireshark
-
+    $editcap_path = $file.DirectoryName + "\editcap.exe"
+    $editcap_path
+    #5秒钟切割分段
+    & "$editcap_path" -i 5   automatic_capture.pcapng out.pcapng
     #& 'C:\Program Files\Wireshark\tshark.exe' -a duration:10 -w D:\test2.pcapng
 }else {
     Write-Error "未在您的电脑上检测到wireshark软件，请安装wireshark软件。"
